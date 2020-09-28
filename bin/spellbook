@@ -1,2 +1,12 @@
 #!/usr/bin/env ruby
 
+require 'pry'
+#need to require something which will allow API call
+#need to require something which will let me read json
+
+require_relative '../lib/api'
+require_relative '../lib/cli'
+require_relative '../lib/school'
+require_relative '../lib/spell'
+require_relative '../lib/spellcaster'
+
