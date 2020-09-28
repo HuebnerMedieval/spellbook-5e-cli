@@ -17,4 +17,9 @@ class Spell
         ritual ? @ritual = ritual : @ritual = "N/A"
         concentration ? @concentration = concentration : @concentration = "N/A"
     end
+
+    def self.all
+        @@all
+    end
+
 end
