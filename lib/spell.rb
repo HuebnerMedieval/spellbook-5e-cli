@@ -11,15 +11,31 @@ class Spell
         @range = range
         @duration = duration
         @level = level
-        #need to check if school exists, add if so, create if not, set school as @school
-        #ditto with class
+        add_to_school(school)
+        add_to_class(class)
         material ? @material = material : @material = "N/A"
         ritual ? @ritual = ritual : @ritual = "N/A"
         concentration ? @concentration = concentration : @concentration = "N/A"
+        @@all << self
     end
 
     def self.all
         @@all
+    end
+
+    def self.create_from_website(hash)
+        #takes in data from the API and instantiates a new spell
+    end
+
+
+    def add_to_school(school_name)
+        self.school = School.find_or_create(school_name)
+        self.school.spells << self
+    end
+
+    def add_to_class(class_name)
+        self.class = Spellcaster.find_or_create(class_name)
+        self.class.spells << self
     end
 
 end
