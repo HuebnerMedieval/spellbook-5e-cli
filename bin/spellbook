@@ -10,4 +10,4 @@ require_relative '../lib/school'
 require_relative '../lib/spell'
 require_relative '../lib/spellcaster'
 
-Cli.new.run
+Cli.new.menu
