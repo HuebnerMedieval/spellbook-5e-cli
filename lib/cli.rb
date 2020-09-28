@@ -20,6 +20,5 @@ class Cli
         puts "To exit the program, type 'exit'."
         puts ""
         @input = gets.strip.downcase
-        
     end
 end
