@@ -3,7 +3,7 @@
 require 'pry'
 require 'net/http'
 require 'open-uri'
-require 'json
+require 'json'
 
 require_relative '../lib/api'
 require_relative '../lib/cli'
@@ -11,6 +11,5 @@ require_relative '../lib/school'
 require_relative '../lib/spell'
 require_relative '../lib/spellcaster'
 
-spell_list = Api.new.get_spell_list
-puts spell_list
-
+puts Api.import_spells
+# Cli.new.menu

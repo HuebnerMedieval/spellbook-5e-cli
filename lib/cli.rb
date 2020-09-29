@@ -19,6 +19,12 @@ class Cli
         puts ""
         puts "To exit the program, type 'exit'."
         puts ""
+        Api.new.import_spells
         @input = gets.strip.downcase
+        if @input == spells
+            puts Spell.all
+        else
+            puts "oops"
+        end
     end
 end
