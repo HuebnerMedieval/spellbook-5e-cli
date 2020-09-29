@@ -13,18 +13,14 @@ class Cli
         puts ""
         puts "To see a list of all spells, type 'spells'."
         puts ""
-        puts "For a list of all of the schools of magic, type 'schools'."
-        puts ""
-        puts "For a list of spellcasting classes, type 'classes'."
-        puts ""
         puts "To exit the program, type 'exit'."
         puts ""
-        Api.new.import_spells
+        Api.import_spells
         @input = gets.strip.downcase
-        if @input == spells
-            puts Spell.all
-        else
-            puts "oops"
+        if @input.downcase == "spells"
+            Spell.list_spells
+        elsif @input.downcase == "exit"
+            exit
         end
     end
 end

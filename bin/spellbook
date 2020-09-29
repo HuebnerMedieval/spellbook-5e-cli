@@ -9,7 +9,5 @@ require_relative '../lib/api'
 require_relative '../lib/cli'
 require_relative '../lib/spell'
 
-Api.import_spells
-fireball = Spell.find_or_create_by_name("Fireball")
-puts fireball.description
-# Cli.new.menu
+# Api.import_spells
+Cli.new.menu

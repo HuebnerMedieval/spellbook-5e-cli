@@ -36,4 +36,11 @@ class Spell
         end
     end
 
+    def self.list_spells
+        Api.metadata.each_with_index do |spell, index|
+            data = Api.get_spell_data(spell["index"])
+            puts "#{index + 1}. #{data["name"]}"
+        end
+    end
+
 end
