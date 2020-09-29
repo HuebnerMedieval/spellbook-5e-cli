@@ -22,9 +22,11 @@ class Api
 
     def self.import_spells
         spells = JSON.parse(self.get_spell_list)
-        spells["results"]
+        @@spell_metadata = spells["results"]
     end
 
-    def self.create_spell
+    def self.metadata
+        @@spell_metadata
+    end
 
 end

@@ -1,0 +1,13 @@
+
+[1mFrom:[0m /mnt/c/Users/elimh/dev/flatiron/labs/spellbook-5e-cli/lib/api.rb @ line 28 Api.import_spells:
+
+    [1;34m23[0m: [32mdef[0m [1;36mself[0m.[1;34mimport_spells[0m
+    [1;34m24[0m:     spells = [1;34;4mJSON[0m.parse([1;36mself[0m.get_spell_list)
+    [1;34m25[0m:     [1;34m# spell_metadata = spells["results"][0m
+    [1;34m26[0m:     [1;34m# spell_metadata[0m
+    [1;34m27[0m:     spells[[31m[1;31m"[0m[31mresults[1;31m"[0m[31m[0m].each [32mdo[0m |spell|
+ => [1;34m28[0m:         binding.pry
+    [1;34m29[0m:         [1;34;4mSpell[0m.new(spell[[31m[1;31m"[0m[31mname[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mdesc[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mrange[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mduration[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mlevel[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mschool[1;31m"[0m[31m[0m][[31m[1;31m"[0m[31mname[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mmaterial[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mritual[1;31m"[0m[31m[0m], spell[[31m[1;31m"[0m[31mconcentration[1;31m"[0m[31m[0m])
+    [1;34m30[0m:     [32mend[0m
+    [1;34m31[0m: [32mend[0m
+

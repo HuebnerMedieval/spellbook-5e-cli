@@ -7,9 +7,9 @@ require 'json'
 
 require_relative '../lib/api'
 require_relative '../lib/cli'
-require_relative '../lib/school'
 require_relative '../lib/spell'
-require_relative '../lib/spellcaster'
 
-puts Api.import_spells
+Api.import_spells
+fireball = Spell.find_or_create_by_name("Fireball")
+puts fireball.description
 # Cli.new.menu
