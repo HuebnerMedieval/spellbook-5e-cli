@@ -30,10 +30,4 @@ class Spell
         Spell.all.find{|spell| spell.name.downcase == name.downcase}
     end
 
-    # def self.find_or_create_by_name(name)
-    #     spell = self.find_spell_by_name(name)
-    #     data = Api.get_spell_data(spell.index)
-    #     spell.populate(data["desc"].join(" "), data["range"], data["duration"], data["level"], data["school"]["name"], data["material"], data["ritual"], data["concentration"])
-    # end
-
 end

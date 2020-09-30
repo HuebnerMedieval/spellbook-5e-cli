@@ -37,6 +37,4 @@ class Api
             spell
         end
     end
-
-#get spell(spell object), which searches to see if the called spell already has data, and if not grabs that data from the json and adds it to the object.
 end
