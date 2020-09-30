@@ -1,11 +1,16 @@
 #This class stores information about the spells available to the user
 class Spell
-    attr_accessor :school, :class, :name, :description, :range, :duration, :level, :material, :ritual, :concentration
+    attr_accessor :school, :class, :name, :description, :range, :duration, :level, :material, :ritual, :concentration, :index
 
     @@all = []
 
-    def initialize(name, description, range, duration, level, school, material = nil, ritual = nil, concentration = nil)
+    def initialize(name, index)
         @name = name
+        @index = index
+        @@all << self
+    end
+
+    def populate (description, range, duration, level, school, material = nil, ritual = nil, concentration = nil)
         @description = description
         @range = range
         @duration = duration
@@ -25,22 +30,10 @@ class Spell
         Spell.all.find{|spell| spell.name.downcase == name.downcase}
     end
 
-    def self.find_or_create_by_name(name)
-        if self.find_spell_by_name(name)
-            self.find_spell_by_name(name)
-        else
-            spell = Api.metadata.find {|spell| spell["name"] == name}
-            data = Api.get_spell_data(spell["index"])
-            new_spell = Spell.new(data["name"], data["desc"].join(" "), data["range"], data["duration"], data["level"], data["school"]["name"], data["material"], data["ritual"], data["concentration"])
-            new_spell
-        end
-    end
-
-    def self.list_spells
-        Api.metadata.each_with_index do |spell, index|
-            data = Api.get_spell_data(spell["index"])
-            puts "#{index + 1}. #{data["name"]}"
-        end
-    end
+    # def self.find_or_create_by_name(name)
+    #     spell = self.find_spell_by_name(name)
+    #     data = Api.get_spell_data(spell.index)
+    #     spell.populate(data["desc"].join(" "), data["range"], data["duration"], data["level"], data["school"]["name"], data["material"], data["ritual"], data["concentration"])
+    # end
 
 end

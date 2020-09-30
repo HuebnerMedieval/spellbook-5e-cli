@@ -11,33 +11,42 @@ class Cli
         puts ""
         puts "*************************"
         puts ""
-        @input = "lorum ipsum"
-        until @input.downcase == "spells" || @input == "exit"
+        input = "lorum ipsum"
+        until input.downcase == "spells" || input == "exit"
             puts "To see a list of all spells, type 'spells'."
             puts ""
             puts "To exit the program, type 'exit'."
             puts ""
             Api.import_spells
-            binding.pry
-            @input = gets.strip.downcase
-            if @input == "spells"
-                Spell.list_spells
-                puts ""
-                puts "Thanks for waiting through that."
+            input = gets.strip.downcase
+            if input == "spells"
+                Spell.all.each_with_index {|spell, index| puts "#{index + 1}. #{spell.name}"}
                 puts ""
                 puts "Now, What spell do you want to know about?"
-                @input = "lorum ipsum"
-                #search metadata for the name
-                until Api.metadata.has_value?(@input)
+                input = "lorum ipsum"
+                #search Spell.all for the spell
+                until Spell.all.find {|spell| spell.name == input}
                     puts "Type a spell name to learn more about the spell."
-                    @input = gets.strip
-                    if Api.metadata.has_value?(@input)
-                        spell = Spell.find_or_create_by_name(@input)
-                        puts "What would you like to know about this spell?"
-                        puts "To know what it does, type 'description'."
-                        puts "To know its range and duration, type 'casting'."
-                        puts "to know its level and if it has any requirements, type 'requirements'."
-                        #need to code the next level of search
+                    input = gets.strip.downcase
+                    if Spell.all.find {|spell| spell.name.downcase == input}
+                        spell = Api.get_spell(input)
+                        puts "What would you like to know about #{spell.name}?"
+                        puts "To know what #{spell.name} does, type 'description'."
+                        puts "To know #{spell.name}'s range and duration, type 'casting'."
+                        puts "to know #{spell.name}'s level and if it has any requirements, type 'requirements'."
+                        puts "to search for a different spell, type 'back'."
+                        deeper_input = "lorum ipsum"
+                        until deeper_input == "description" || deeper_input == "casting" || deeper_input == "requirements" || deeper_input == "back"
+                            deeper_input = gets.strip.downcase
+                            if deeper_input == "desription"
+                                puts spell.description
+                            elsif deeper_input == "casting"
+                                puts "#{spell.name}'s range is #{spell.range}, and it lasts #{spell.duration}."
+                            elsif deeper_input == "requirements"
+                                puts "#{spell.name} is #{spell.level} level"
+                                puts "Requirements: #{spell.requirements}"
+                            end
+                        end
                     else
                         puts "Please check the spelling of your spell."
                     end
@@ -47,4 +56,9 @@ class Cli
             end
         end
     end
+
+    # def self.list_spells
+    #     Spell.all.each_with_index {|spell, index| puts "#{index + 1}. #{spell.name}"}
+    # end
+
 end

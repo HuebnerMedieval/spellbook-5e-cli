@@ -22,11 +22,21 @@ class Api
 
     def self.import_spells
         spells = JSON.parse(self.get_spell_list)
-        @@spell_metadata = spells["results"]
+        spells["results"].each do |spell|
+            Spell.new(spell["name"], spell["index"])
+        end
     end
 
-    def self.metadata
-        @@spell_metadata
+    def self.get_spell(name)
+        spell = Spell.find_spell_by_name(name)
+        if spell.description
+            spell
+        else
+            data = Api.get_spell_data(spell.index)
+            spell.populate(data["desc"].join(" "), data["range"], data["duration"], data["level"], data["school"]["name"], data["material"], data["ritual"], data["concentration"])
+            spell
+        end
     end
 
+#get spell(spell object), which searches to see if the called spell already has data, and if not grabs that data from the json and adds it to the object.
 end
