@@ -1,4 +1,4 @@
-#This is the class which will interface with the user
+
 class Cli
     def menu
         puts ""
@@ -83,6 +83,7 @@ class Cli
         end
     end
 
+    #prints a list of all spells in the Basic Rules by name.
     def print_spells
         Spell.all.each_with_index {|spell, index| puts "#{index + 1}. #{spell.name}"}
     end
