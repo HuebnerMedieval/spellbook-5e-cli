@@ -26,10 +26,12 @@ class Cli
                 input = "lorum ipsum"
                 until Spell.all.find {|spell| spell.name == input}
                     puts ""
-                    puts "Type a spell name to learn more about the spell."
+                    puts "Type a spell name to learn more about the spell, or type 'exit'."
+                    puts "If you need the list of spells again, type 'list spells'."
                     input = gets.strip.downcase
                     if Spell.all.find {|spell| spell.name.downcase == input}
                         spell = Api.get_spell(input)
+                        puts ""
                         puts "What would you like to know about #{spell.name}?"
                         puts "******************************"
                         puts "To know what #{spell.name} does, type 'description'."
@@ -54,6 +56,10 @@ class Cli
                                 exit
                             end
                         end
+                    elsif input == "exit"
+                        exit
+                    elsif input == "list spells"
+                        Spell.all.each_with_index {|spell, index| puts "#{index + 1}. #{spell.name}"}
                     else
                         puts ""
                         puts "Please check the spelling of your spell."
