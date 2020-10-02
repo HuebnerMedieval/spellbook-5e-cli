@@ -37,13 +37,7 @@ class Cli
                         puts ""
                         puts "What would you like to know about #{spell.name}?"
                         puts ""
-                        puts "*-*-*-*-*-*-*-*-*-*"
-                        puts "To know what #{spell.name} does, type 'description'."
-                        puts "To know #{spell.name}'s range and duration, type 'casting'."
-                        puts "To know #{spell.name}'s level and if it has any requirements, type 'requirements'."
-                        puts "To pick a new spell, type 'back'."
-                        puts "To exit the program, type 'exit'."
-                        puts "*-*-*-*-*-*-*-*-*-*"
+                        self.spell_menu(spell.name)
                         puts ""
                         deeper_input = "lorum ipsum"
                         until deeper_input == "description" || deeper_input == "casting" || deeper_input == "requirements" || deeper_input == "back"
@@ -54,26 +48,14 @@ class Cli
                                 puts "********************"
                                 puts ""
                                 deeper_input = "lorum ipsum"
-                                puts "*-*-*-*-*-*-*-*-*-*"
-                                puts "To know what #{spell.name} does, type 'description'."
-                                puts "To know #{spell.name}'s range and duration, type 'casting'."
-                                puts "To know #{spell.name}'s level and if it has any requirements, type 'requirements'."
-                                puts "To pick a new spell, type 'back'."
-                                puts "To exit the program, type 'exit'."
-                                puts "*-*-*-*-*-*-*-*-*-*"
+                                self.spell_menu(spell.name)
                             elsif deeper_input == "casting"
                                 puts "********************"
                                 puts "#{spell.name}'s range is #{spell.range}, and it lasts #{spell.duration}."
                                 puts "********************"
                                 puts ""
                                 deeper_input = "lorum ipsum"
-                                puts "*-*-*-*-*-*-*-*-*-*"
-                                puts "To know what #{spell.name} does, type 'description'."
-                                puts "To know #{spell.name}'s range and duration, type 'casting'."
-                                puts "To know #{spell.name}'s level and if it has any requirements, type 'requirements'."
-                                puts "To pick a new spell, type 'back'."
-                                puts "To exit the program, type 'exit'."
-                                puts "*-*-*-*-*-*-*-*-*-*"
+                                self.spell_menu(spell.name)
                             elsif deeper_input == "requirements"
                                 puts "********************"
                                 puts "#{spell.name} is a level #{spell.level} spell."
@@ -81,13 +63,7 @@ class Cli
                                 puts "********************"
                                 puts ""
                                 deeper_input = "lorum ipsum"
-                                puts "*-*-*-*-*-*-*-*-*-*"
-                                puts "To know what #{spell.name} does, type 'description'."
-                                puts "To know #{spell.name}'s range and duration, type 'casting'."
-                                puts "To know #{spell.name}'s level and if it has any requirements, type 'requirements'."
-                                puts "To pick a new spell, type 'back'."
-                                puts "To exit the program, type 'exit'."
-                                puts "*-*-*-*-*-*-*-*-*-*"
+                                self.spell_menu(spell.name)
                             elsif deeper_input == "exit"
                                 exit
                             end
@@ -110,5 +86,15 @@ class Cli
     #prints a list of all spells in the Basic Rules by name.
     def print_spells
         Spell.all.each_with_index {|spell, index| puts "#{index + 1}. #{spell.name}"}
+    end
+
+    def spell_menu(spell_name)
+        puts "*-*-*-*-*-*-*-*-*-*"
+        puts "To know what #{spell_name} does, type 'description'."
+        puts "To know #{spell_name}'s range and duration, type 'casting'."
+        puts "To know #{spell_name}'s level and if it has any requirements, type 'requirements'."
+        puts "To pick a new spell, type 'back'."
+        puts "To exit the program, type 'exit'."
+        puts "*-*-*-*-*-*-*-*-*-*"
     end
 end
