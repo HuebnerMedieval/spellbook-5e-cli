@@ -12,12 +12,12 @@ class Cli
         puts "********************"
         puts ""
         input = "lorum ipsum"
+        Api.import_spells
         until input.downcase == "spells" || input.downcase == "exit"
             puts "To see a list of all spells, type 'spells'."
             puts ""
             puts "To exit the program, type 'exit'."
             puts ""
-            Api.import_spells
             input = gets.strip
             if input.downcase == "spells"
                 self.print_spells
