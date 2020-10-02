@@ -21,7 +21,6 @@ class Spell
         material ? @material = material : @material = "N/A"
         ritual ? @ritual = ritual : @ritual = "N/A"
         concentration ? @concentration = concentration : @concentration = "N/A"
-        @@all << self
     end
 
     #lists all spell objects
