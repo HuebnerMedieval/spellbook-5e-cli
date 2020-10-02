@@ -33,4 +33,9 @@ class Spell
         Spell.all.find{|spell| spell.name.downcase == name.downcase}
     end
 
+    def self.sort_spells
+        sorted_array = self.all.sort { |a, b| a.name <=> b.name}
+        sorted_array
+    end
+
 end
